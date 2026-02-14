@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Clone - Music Recommendation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <h1>Spotify<span>Clone</span></h1>
+    <nav>
+      <button class="nav-item active" data-view="home">Home</button>
+      <button class="nav-item" data-view="search">Search</button>
+      <button class="nav-item" data-view="library">Your Library</button>
+      <button class="nav-item" data-view="recommendations">Made For You</button>
+    </nav>
+    <div class="playlist-create">
+      <h3>Create playlist</h3>
+      <input id="playlistName" placeholder="Playlist name" />
+      <button id="createPlaylist">Create</button>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <input id="searchInput" placeholder="What do you want to play?" />
+      <button id="loginBtn">Quick Login</button>
+      <span id="userBadge">Guest</span>
+    </header>
+
+    <section id="home" class="view active">
+      <h2>Trending now</h2>
+      <div id="trendingTracks" class="grid"></div>
+    </section>
+
+    <section id="search" class="view">
+      <h2>Search results</h2>
+      <div id="searchResults" class="grid"></div>
+    </section>
+
+    <section id="library" class="view">
+      <h2>Your playlists</h2>
+      <div id="playlists" class="list"></div>
+    </section>
+
+    <section id="recommendations" class="view">
+      <h2>Recommended for you</h2>
+      <div id="recommendedTracks" class="grid"></div>
+    </section>
+  </main>
+</div>
+
+<footer class="player">
+  <div>
+    <strong id="nowPlaying">Not playing</strong>
+    <p id="nowPlayingMeta">Pick a track</p>
+  </div>
+  <input type="range" min="0" max="100" value="18" />
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
