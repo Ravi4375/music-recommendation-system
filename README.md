@@ -29,6 +29,27 @@ mvn spring-boot:run
 ```
 Then open: http://localhost:8080
 
+## Run in IntelliJ (fix for `org.springframework.web.bind.annotation does not exist`)
+If IntelliJ shows this error:
+`package org.springframework.web.bind.annotation does not exist`
+it means Spring dependencies were not imported into the IDE classpath.
+
+Do this:
+1. Install/use **JDK 17** in IntelliJ (`File > Project Structure > Project SDK`).
+2. Open the project from the **`pom.xml`** root folder.
+3. In Maven tool window, click **Reload All Maven Projects**.
+4. Ensure IntelliJ uses bundled Maven or a valid local Maven (`Settings > Build Tools > Maven`).
+5. Run from IntelliJ using:
+   - Main class: `com.spotifyclone.MusicRecommendationApplication`
+   - Or Maven goal: `spring-boot:run`
+
+### If dependencies still do not resolve
+Run in terminal from project root:
+```bash
+mvn -U clean compile
+```
+Then reload Maven in IntelliJ again.
+
 ## Demo login
 - Username: `demo`
 - Password: `demo`
