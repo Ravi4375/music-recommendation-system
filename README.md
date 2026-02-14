@@ -32,23 +32,27 @@ Then open: http://localhost:8080
 ## Run in IntelliJ (fix for `org.springframework.web.bind.annotation does not exist`)
 If IntelliJ shows this error:
 `package org.springframework.web.bind.annotation does not exist`
-it means Spring dependencies were not imported into the IDE classpath.
+it means Maven dependencies are not on the IDE classpath yet.
 
-Do this:
+Do this exactly:
 1. Install/use **JDK 17** in IntelliJ (`File > Project Structure > Project SDK`).
-2. Open the project from the **`pom.xml`** root folder.
-3. In Maven tool window, click **Reload All Maven Projects**.
-4. Ensure IntelliJ uses bundled Maven or a valid local Maven (`Settings > Build Tools > Maven`).
-5. Run from IntelliJ using:
-   - Main class: `com.spotifyclone.MusicRecommendationApplication`
-   - Or Maven goal: `spring-boot:run`
+2. Open the project from the folder containing **`pom.xml`**.
+3. Enable Maven import and click **Reload All Maven Projects** (Maven tool window).
+4. Ensure Maven is not in offline mode (`Settings > Build Tools > Maven > Offline` unchecked).
+5. Set build/run to Maven or IntelliJ with Maven classpath:
+   - `Settings > Build, Execution, Deployment > Build Tools > Maven > Runner`
+   - Check **Delegate IDE build/run actions to Maven**.
+6. Run `com.spotifyclone.MusicRecommendationApplication`.
 
-### If dependencies still do not resolve
-Run in terminal from project root:
+### If error still appears
+Run these from terminal (project root), then reload Maven:
 ```bash
+mvn -U dependency:purge-local-repository
 mvn -U clean compile
 ```
-Then reload Maven in IntelliJ again.
+
+### If your network blocks Maven Central
+This project includes fallback repositories in `pom.xml` (Aliyun and Spring release repos). If your company network blocks all external repositories, configure your proxy in Maven `settings.xml`.
 
 ## Demo login
 - Username: `demo`
